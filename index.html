@@ -43,10 +43,6 @@
     import React, { useState, useEffect, useRef } from 'react';
     import ReactDOM from 'react-dom/client';
 
-    // --- Start: Content from types.ts ---
-    // --- End: Content from types.ts ---
-
-    // --- Start: Content from constants.tsx ---
     const VincifyLogo = () => (
       <h1 className="text-3xl font-bold text-white tracking-tighter font-cinzel">
         Vincify
@@ -91,9 +87,7 @@
         imageUrl: 'https://storage.googleapis.com/pai-images/59230538a708453488476d0590a984a6.png'
       }
     ];
-    // --- End: Content from constants.tsx ---
 
-    // --- Start: Content from App.tsx ---
     const AnimateOnScroll = ({ children }) => {
       const [isVisible, setIsVisible] = useState(false);
       const ref = useRef(null);
@@ -563,9 +557,7 @@
         </div>
       );
     };
-    // --- End: Content from App.tsx ---
 
-    // --- Start: Content from index.tsx ---
     const rootElement = document.getElementById('root');
     if (!rootElement) {
       throw new Error("Could not find root element to mount to");
@@ -577,7 +569,6 @@
         <App />
       </React.StrictMode>
     );
-    // --- End: Content from index.tsx ---
   </script>
 </body>
 </html>

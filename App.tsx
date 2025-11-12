@@ -98,6 +98,69 @@ const StoreButton: React.FC<StoreButtonProps> = ({ icon, storeName }) => (
   </a>
 );
 
+// Testimonials Section Components
+const testimonials = [
+    {
+      quote: "Vincify has completely changed my morning routine. Instead of scrolling social media, I spend 5 minutes learning something new and fascinating. It's brilliant.",
+      name: "Alex R.",
+      title: "Software Engineer",
+      avatar: "🧑‍💻"
+    },
+    {
+      quote: "As a designer, I need to stay curious. This app is like a personal museum curator for my brain. The AI lessons are sharp, focused, and surprisingly engaging.",
+      name: "Maria S.",
+      title: "Product Designer",
+      avatar: "🎨"
+    },
+    {
+      quote: "I've always wanted to be a polymath but never knew where to start. Vincify's 'to-learn list' is the perfect tool. It's simple, powerful, and makes learning feel like an adventure.",
+      name: "David L.",
+      title: "Lifelong Learner",
+      avatar: "🧠"
+    }
+];
+
+interface Testimonial {
+  quote: string;
+  name: string;
+  title: string;
+  avatar: string;
+}
+
+const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }) => (
+    <div className="bg-white/5 p-8 rounded-2xl border border-white/10 flex flex-col h-full transition-transform duration-300 hover:scale-105 hover:-translate-y-1">
+        <p className="text-gray-300 leading-relaxed flex-grow text-lg">"{testimonial.quote}"</p>
+        <div className="flex items-center mt-6 pt-6 border-t border-white/10">
+            <div className="w-12 h-12 rounded-full bg-purple-900/50 flex items-center justify-center text-2xl mr-4 shrink-0">
+                {testimonial.avatar}
+            </div>
+            <div>
+                <p className="font-bold text-white">{testimonial.name}</p>
+                <p className="text-sm text-gray-400">{testimonial.title}</p>
+            </div>
+        </div>
+    </div>
+);
+
+const TestimonialsSection = () => (
+    <section className="py-24 md:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-white">Join the Learning Revolution</h2>
+                <p className="text-lg text-gray-400 mt-4">See what early adopters are saying about Vincify.</p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {testimonials.map((testimonial, index) => (
+                    <AnimateOnScroll key={index}>
+                        <TestimonialCard testimonial={testimonial} />
+                    </AnimateOnScroll>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+
 // FAQ Section Components
 const faqs = [
     {
@@ -208,7 +271,7 @@ const MainPage: React.FC<{ setPage: (page: string) => void }> = ({ setPage }) =>
                   Vincify
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-8">
-                  The revolutionary AI-driven app that will turn you into a polymath
+                  The revolutionary AI-driven app that will turn you into a polymath.
                 </p>
                 <p className="text-lg text-gray-400 mb-8">Get Vincify now on the App Store or Google Play Store</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
@@ -299,6 +362,8 @@ const MainPage: React.FC<{ setPage: (page: string) => void }> = ({ setPage }) =>
             ))}
           </section>
           
+          <TestimonialsSection />
+
           <FaqSection />
 
           <section className="py-20 text-center">

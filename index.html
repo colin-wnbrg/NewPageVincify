@@ -76,22 +76,22 @@
       {
         title: 'To-Learn List',
         description: 'Start each day by adding the topics you want to explore. The app turns your input into focused, AI-generated micro-lessons — fast, clear, and ready when you are. No distractions, just pure learning.',
-        imageUrl: './1.png'
+        imageUrl: 'https://i.ibb.co/6gSXD3s/1.png'
       },
       {
         title: 'Add lessons',
         description: "Found something you're curious about? Just type it in. Our AI instantly turns your idea into a structured micro-lesson and adds it to your home list.",
-        imageUrl: './2.png'
+        imageUrl: 'https://i.ibb.co/bB4g0p9/2.png'
       },
       {
         title: 'AI-generated lessons',
         description: 'Each lesson consists of engaging writing to explain the topic clearly and memorably. Learn while walking, waiting, or relaxing.',
-        imageUrl: './3.png'
+        imageUrl: 'https://i.ibb.co/FbfV9v7/3.png'
       },
       {
         title: 'Quiz',
         description: 'Take a quiz after each lesson to make sure you understand the entire topic and are becoming smarter every day. Fuel your deep understanding and expand your knowledge.',
-        imageUrl: './4.png'
+        imageUrl: 'https://i.ibb.co/GcJ3rVp/4.png'
       }
     ];
 
@@ -305,9 +305,27 @@
           <main>
               <section className="relative min-h-[90vh] flex items-center py-12 md:py-32">
                  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                    {/* Desktop Images */}
                     <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Da_Vinci_Studies_of_Embryos_Luc_Viatour.jpg" alt="Da Vinci study of emryos" className="hidden md:block absolute -left-20 -top-10 w-64 md:w-96 opacity-10 -rotate-12" />
                     <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Leonardo_da_Vinci_-_presumed_self-portrait_-_WGA12798.jpg" alt="Da Vinci self portrait" className="hidden md:block absolute left-10 md:left-1/3 top-20 md:top-8 w-64 md:w-96 opacity-15 rotate-6" />
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Da_Vinci_Vitruve_Luc_Viatour.jpg/800px-Da_Vinci_Vitruve_Luc_Viatour.jpg" alt="Vitruvian Man sketch" className="hidden md:block absolute -right-24 bottom-40 md:bottom-20 w-64 md:w-80 opacity-10 rotate-12" />
+
+                    {/* Mobile Images */}
+                    <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/3/38/Leonardo_da_Vinci_-_presumed_self-portrait_-_WGA12798.jpg" 
+                        alt="Da Vinci self portrait" 
+                        className="md:hidden absolute top-6 left-4 w-32 opacity-15 rotate-12" 
+                    />
+                    <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Da_Vinci_Vitruve_Luc_Viatour.jpg/800px-Da_Vinci_Vitruve_Luc_Viatour.jpg" 
+                        alt="Vitruvian Man sketch" 
+                        className="md:hidden absolute -right-24 top-60 w-64 opacity-10 -rotate-12" 
+                    />
+                    <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Da_Vinci_Studies_of_Embryos_Luc_Viatour.jpg" 
+                        alt="Da Vinci study of emryos" 
+                        className="md:hidden absolute -left-24 top-72 w-64 opacity-10 rotate-12" 
+                    />
                 </div>
 
                 <div className="relative z-10 container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
@@ -319,8 +337,13 @@
                       The revolutionary AI-driven app that will turn you into a polymath.
                     </p>
 
-                    <div className="md:hidden flex justify-center py-8 opacity-20">
-                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Da_Vinci_Vitruve_Luc_Viatour.jpg/800px-Da_Vinci_Vitruve_Luc_Viatour.jpg" alt="Vitruvian Man sketch" className="w-64 rotate-12" />
+                    {/* Mobile Only: Small Screenshot */}
+                    <div className="md:hidden flex justify-center mb-10">
+                        <img 
+                          src={FEATURES[0].imageUrl} 
+                          alt="App Screenshot" 
+                          className="w-48 rounded-2xl shadow-2xl shadow-purple-900/20"
+                        />
                     </div>
 
                     <p className="text-lg text-gray-400 mb-8">Get Vincify now on the App Store or Google Play Store</p>
@@ -329,7 +352,7 @@
                       <StoreButton icon={<PlayStoreIcon />} storeName="Google Play" />
                     </div>
                   </div>
-                  <div className="md:w-1/2 flex justify-center">
+                  <div className="hidden md:flex md:w-1/2 justify-center">
                      <AnimateOnScroll>
                         <img 
                           src={FEATURES[0].imageUrl} 

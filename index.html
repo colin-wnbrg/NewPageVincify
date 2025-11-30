@@ -24,13 +24,25 @@
     }
     .reveal-on-scroll {
       opacity: 0;
-      transform: perspective(1000px) rotateX(-45deg) scale(0.9);
-      transition: opacity 1s ease-out 0.2s, transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s;
+      transform: translateY(30px);
+      transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
       will-change: transform, opacity;
     }
     .reveal-on-scroll.is-visible {
       opacity: 1;
-      transform: perspective(1000px) rotateX(0) scale(1);
+      transform: translateY(0);
+    }
+
+    /* Animation for the desktop hero image */
+    .rotate-anim {
+      --tw-rotate: 12deg;
+      transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .reveal-on-scroll.is-visible .rotate-anim {
+      --tw-rotate: 6deg;
+    }
+    .rotate-anim:hover {
+      transition-duration: 500ms;
     }
   </style>
 <script type="importmap">
@@ -76,26 +88,26 @@
       {
         title: 'To-Learn List',
         description: 'Start each day by adding the topics you want to explore. The app turns your input into focused, AI-generated micro-lessons — fast, clear, and ready when you are. No distractions, just pure learning.',
-        imageUrl: './1.png'
+        imageUrl: 'https://i.ibb.co/6gSXD3s/1.png'
       },
       {
         title: 'Add lessons',
         description: "Found something you're curious about? Just type it in. Our AI instantly turns your idea into a structured micro-lesson and adds it to your home list.",
-        imageUrl: './2.png'
+        imageUrl: 'https://i.ibb.co/bB4g0p9/2.png'
       },
       {
         title: 'AI-generated lessons',
         description: 'Each lesson consists of engaging writing to explain the topic clearly and memorably. Learn while walking, waiting, or relaxing.',
-        imageUrl: './3.png'
+        imageUrl: 'https://i.ibb.co/FbfV9v7/3.png'
       },
       {
         title: 'Quiz',
         description: 'Take a quiz after each lesson to make sure you understand the entire topic and are becoming smarter every day. Fuel your deep understanding and expand your knowledge.',
-        imageUrl: './4.png'
+        imageUrl: 'https://i.ibb.co/GcJ3rVp/4.png'
       }
     ];
 
-    const AnimateOnScroll = ({ children }) => {
+    const AnimateOnScroll = ({ children, className = "" }) => {
       const [isVisible, setIsVisible] = useState(false);
       const ref = useRef(null);
 
@@ -109,7 +121,7 @@
           },
           {
             rootMargin: '0px',
-            threshold: 0.2
+            threshold: 0.15
           }
         );
 
@@ -126,7 +138,7 @@
       }, []);
 
       return (
-        <div ref={ref} className={`reveal-on-scroll ${isVisible ? 'is-visible' : ''}`}>
+        <div ref={ref} className={`reveal-on-scroll ${isVisible ? 'is-visible' : ''} ${className}`}>
           {children}
         </div>
       );
@@ -149,12 +161,14 @@
               </AnimateOnScroll>
             </div>
             <div className={`md:w-1/2 text-center md:text-left ${isReversed ? 'md:order-1' : ''}`}>
-              <span className="inline-block px-4 py-1 text-sm font-semibold tracking-wider text-purple-300 bg-purple-900/30 rounded-full mb-4">
-                {feature.title}
-              </span>
-              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                {feature.description}
-              </p>
+              <AnimateOnScroll>
+                <span className="inline-block px-4 py-1 text-sm font-semibold tracking-wider text-purple-300 bg-purple-900/30 rounded-full mb-4">
+                  {feature.title}
+                </span>
+                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
+                  {feature.description}
+                </p>
+              </AnimateOnScroll>
             </div>
           </div>
         </div>
@@ -165,14 +179,14 @@
       <section className="py-24 md:py-20 container mx-auto px-6">
         
         {/* Da Vinci Method Section */}
-        <div className="text-center mb-16">
+        <AnimateOnScroll className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">The Da Vinci Method, Reimagined</h2>
           <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Leonardo da Vinci's secret to becoming a polymath was a daily to-learn list. We took his powerful habit and supercharged it with modern AI.
           </p>
-        </div>
+        </AnimateOnScroll>
 
-        <div className="grid md:grid-cols-2 gap-10 md:gap-8 max-w-5xl mx-auto mb-32">
+        <AnimateOnScroll className="grid md:grid-cols-2 gap-10 md:gap-8 max-w-5xl mx-auto mb-32">
           <div className="bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 hover:scale-105">
             <h3 className="text-2xl font-bold text-purple-400 mb-4">Learn with Purpose</h3>
             <p className="text-gray-400 leading-relaxed text-lg">
@@ -185,45 +199,45 @@
               Imagine if Da Vinci had a smart assistant. That's Vincify. Get the focus of a genius with the power of modern AI to turn curiosity into deep understanding, effortlessly.
             </p>
           </div>
-        </div>
+        </AnimateOnScroll>
 
         {/* Stop Drowning Section */}
-        <div className="text-center mb-16">
+        <AnimateOnScroll className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Stop Drowning in Content</h2>
           <p className="text-lg text-gray-400">In today's world, it's easy to get lost.</p>
-        </div>
+        </AnimateOnScroll>
 
-        <div className="grid md:grid-cols-3 gap-10 md:gap-6 max-w-6xl mx-auto mb-32">
-             <div className="bg-white/5 border border-white/10 p-6 rounded-xl flex items-center gap-4 h-full transition-all duration-300 hover:scale-105 hover:bg-white/10">
-                <div className="text-4xl">📌</div>
-                <div className="text-gray-200 font-medium text-lg">Endless saved articles you never revisit</div>
+        <AnimateOnScroll className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto mb-32">
+             <div className="bg-white/5 border border-white/10 p-4 md:p-6 rounded-xl flex items-center gap-4 h-full transition-all duration-300 hover:scale-105 hover:bg-white/10">
+                <div className="text-3xl md:text-4xl">📌</div>
+                <div className="text-gray-200 font-medium text-base md:text-lg">Endless saved articles you never revisit</div>
              </div>
-             <div className="bg-white/5 border border-white/10 p-6 rounded-xl flex items-center gap-4 h-full transition-all duration-300 hover:scale-105 hover:bg-white/10">
-                <div className="text-4xl">😵‍💫</div>
-                <div className="text-gray-200 font-medium text-lg">YouTube rabbit holes that waste hours</div>
+             <div className="bg-white/5 border border-white/10 p-4 md:p-6 rounded-xl flex items-center gap-4 h-full transition-all duration-300 hover:scale-105 hover:bg-white/10">
+                <div className="text-3xl md:text-4xl">😵‍💫</div>
+                <div className="text-gray-200 font-medium text-base md:text-lg">YouTube rabbit holes that waste hours</div>
              </div>
-             <div className="bg-white/5 border border-white/10 p-6 rounded-xl flex items-center gap-4 h-full transition-all duration-300 hover:scale-105 hover:bg-white/10">
-                <div className="text-4xl">📚</div>
-                <div className="text-gray-200 font-medium text-lg">Courses you abandon halfway</div>
+             <div className="bg-white/5 border border-white/10 p-4 md:p-6 rounded-xl flex items-center gap-4 h-full transition-all duration-300 hover:scale-105 hover:bg-white/10">
+                <div className="text-3xl md:text-4xl">📚</div>
+                <div className="text-gray-200 font-medium text-base md:text-lg">Courses you abandon halfway</div>
              </div>
-        </div>
+        </AnimateOnScroll>
 
         {/* Vincify Flips Script Section */}
-        <div className="text-center mb-12">
+        <AnimateOnScroll className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Start Learning like Da Vinci</h2>
           <p className="text-lg text-gray-400">With Vincify you'll become the next Renaissance Man.</p>
-        </div>
+        </AnimateOnScroll>
 
-        <div className="grid md:grid-cols-2 gap-10 md:gap-8 max-w-5xl mx-auto">
-            <div className="bg-white/5 border border-white/10 p-8 rounded-2xl flex items-center gap-6 transition-all duration-300 hover:scale-105 hover:bg-white/10">
-                <div className="text-5xl flex-shrink-0">🎯</div>
-                <p className="text-gray-200 text-lg">You choose your own interests to learn with intention.</p>
+        <AnimateOnScroll className="grid md:grid-cols-2 gap-4 md:gap-8 max-w-5xl mx-auto">
+            <div className="bg-white/5 border border-white/10 p-5 md:p-8 rounded-2xl flex items-center gap-4 md:gap-6 transition-all duration-300 hover:scale-105 hover:bg-white/10">
+                <div className="text-4xl md:text-5xl flex-shrink-0">🎯</div>
+                <p className="text-gray-200 text-base md:text-lg">You choose your own interests to learn with intention.</p>
             </div>
-            <div className="bg-white/5 border border-white/10 p-8 rounded-2xl flex items-center gap-6 transition-all duration-300 hover:scale-105 hover:bg-white/10">
-                <div className="text-5xl flex-shrink-0">⏱️</div>
-                <p className="text-gray-200 text-lg">Just 5 focused minutes a day to become the smartest version of yourself.</p>
+            <div className="bg-white/5 border border-white/10 p-5 md:p-8 rounded-2xl flex items-center gap-4 md:gap-6 transition-all duration-300 hover:scale-105 hover:bg-white/10">
+                <div className="text-4xl md:text-5xl flex-shrink-0">⏱️</div>
+                <p className="text-gray-200 text-base md:text-lg">Just 5 focused minutes a day to become the smartest version of yourself.</p>
             </div>
-        </div>
+        </AnimateOnScroll>
 
       </section>
     );
@@ -281,19 +295,21 @@
         return (
             <section className="py-24 md:py-32">
                 <div className="max-w-4xl mx-auto px-6">
-                    <div className="text-center mb-12">
+                    <AnimateOnScroll className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold text-white">Frequently Asked Questions</h2>
-                    </div>
-                    <div>
-                        {faqs.map((faq, index) => (
-                            <FaqItem
-                                key={index}
-                                faq={faq}
-                                isOpen={openIndex === index}
-                                onClick={() => handleClick(index)}
-                            />
-                        ))}
-                    </div>
+                    </AnimateOnScroll>
+                    <AnimateOnScroll>
+                        <div>
+                            {faqs.map((faq, index) => (
+                                <FaqItem
+                                    key={index}
+                                    faq={faq}
+                                    isOpen={openIndex === index}
+                                    onClick={() => handleClick(index)}
+                                />
+                            ))}
+                        </div>
+                    </AnimateOnScroll>
                 </div>
             </section>
         );
@@ -319,45 +335,49 @@
                     <img 
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Da_Vinci_Vitruve_Luc_Viatour.jpg/800px-Da_Vinci_Vitruve_Luc_Viatour.jpg" 
                         alt="Vitruvian Man sketch" 
-                        className="md:hidden absolute -right-24 top-60 w-64 opacity-10 -rotate-12" 
+                        className="md:hidden absolute -right-24 top-80 w-64 opacity-10 -rotate-12" 
                     />
                     <img 
                         src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Da_Vinci_Studies_of_Embryos_Luc_Viatour.jpg" 
                         alt="Da Vinci study of emryos" 
-                        className="md:hidden absolute -left-24 top-72 w-64 opacity-10 rotate-12" 
+                        className="md:hidden absolute -left-24 top-96 w-64 opacity-10 rotate-12" 
                     />
                 </div>
 
                 <div className="relative z-10 container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-                  <div className="md:w-1/2 text-center md:text-left mb-40 md:mb-0">
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter mb-4 text-gray-300 font-cinzel">
-                      Vincify
-                    </h1>
-                    <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-8">
-                      The revolutionary AI-driven app that will turn you into a polymath.
-                    </p>
+                  <div className="md:w-1/2 text-center md:text-left mb-0 md:mb-0">
+                    <AnimateOnScroll>
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter mb-4 text-gray-300 font-cinzel">
+                          Vincify
+                        </h1>
+                        <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-8 md:mb-8">
+                          The revolutionary AI-driven app that will turn you into a polymath.
+                        </p>
+                    </AnimateOnScroll>
 
                     {/* Mobile Only: Small Screenshot */}
-                    <div className="md:hidden flex justify-center mb-10">
+                    <AnimateOnScroll className="md:hidden flex justify-center mt-32 mb-48">
                         <img 
                           src={FEATURES[0].imageUrl} 
                           alt="App Screenshot" 
                           className="w-48 rounded-2xl shadow-2xl shadow-purple-900/20"
                         />
-                    </div>
+                    </AnimateOnScroll>
 
-                    <p className="text-lg text-gray-400 mb-8">Get Vincify now on the App Store or Google Play Store</p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-                      <StoreButton icon={<AppleIcon />} storeName="App Store" />
-                      <StoreButton icon={<PlayStoreIcon />} storeName="Google Play" />
-                    </div>
+                    <AnimateOnScroll>
+                        <p className="text-lg text-gray-400 mb-8">Get Vincify now on the App Store or Google Play Store</p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                          <StoreButton icon={<AppleIcon />} storeName="App Store" />
+                          <StoreButton icon={<PlayStoreIcon />} storeName="Google Play" />
+                        </div>
+                    </AnimateOnScroll>
                   </div>
                   <div className="hidden md:flex md:w-1/2 justify-center">
                      <AnimateOnScroll>
                         <img 
                           src={FEATURES[0].imageUrl} 
                           alt={`${FEATURES[0].title} screenshot`} 
-                          className="w-auto h-auto max-h-[570px] md:max-h-[650px] rounded-2xl shadow-2xl shadow-purple-900/20 transform md:rotate-6 transition-transform duration-500 hover:rotate-3 hover:scale-105"
+                          className="w-auto h-auto max-h-[570px] md:max-h-[650px] rounded-2xl shadow-2xl shadow-purple-900/20 transform rotate-anim hover:rotate-3 hover:scale-105"
                           loading="lazy"
                         />
                       </AnimateOnScroll>
@@ -377,11 +397,13 @@
 
               <section className="py-20 text-center">
                 <div className="container mx-auto px-6">
-                    <p className="text-lg text-gray-400 mb-8">Get Vincify now on the App Store or Google Play Store</p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <StoreButton icon={<AppleIcon />} storeName="App Store" />
-                        <StoreButton icon={<PlayStoreIcon />} storeName="Google Play" />
-                    </div>
+                    <AnimateOnScroll>
+                        <p className="text-lg text-gray-400 mb-8">Get Vincify now on the App Store or Google Play Store</p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <StoreButton icon={<AppleIcon />} storeName="App Store" />
+                            <StoreButton icon={<PlayStoreIcon />} storeName="Google Play" />
+                        </div>
+                    </AnimateOnScroll>
                 </div>
               </section>
 
@@ -439,12 +461,12 @@
           </header>
           <main className="flex-grow flex items-center justify-center">
             <div className="w-full max-w-2xl mx-auto px-6 py-12 md:py-20">
-                <div className="text-center mb-12">
+                <AnimateOnScroll className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold text-white">Contact Support</h2>
                     <p className="text-lg text-gray-400 mt-4">We're here to help. Fill out the form below and we'll get back to you as soon as possible.</p>
-                </div>
+                </AnimateOnScroll>
                 
-                <div className="bg-white/5 p-8 rounded-2xl border border-white/10">
+                <AnimateOnScroll className="bg-white/5 p-8 rounded-2xl border border-white/10">
                   {status === 'success' ? (
                     <div className="text-center py-10">
                       <h3 className="text-2xl font-bold text-white mb-2">Thank You!</h3>
@@ -507,7 +529,7 @@
                         )}
                     </form>
                   )}
-                </div>
+                </AnimateOnScroll>
             </div>
           </main>
           <footer className="border-t border-white/10 py-8 mt-auto">

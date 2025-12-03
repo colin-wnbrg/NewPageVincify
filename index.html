@@ -90,22 +90,22 @@
       {
         title: 'To-Learn List',
         description: 'Start each day by adding the topics you want to explore. The app turns your input into focused, AI-generated micro-lessons — fast, clear, and ready when you are. No distractions, just pure learning.',
-        imageUrl: './1.png'
+        imageUrl: 'https://i.ibb.co/6gSXD3s/1.png'
       },
       {
         title: 'Add lessons',
         description: "Found something you're curious about? Just type it in. Our AI instantly turns your idea into a structured micro-lesson and adds it to your home list.",
-        imageUrl: './2.png'
+        imageUrl: 'https://i.ibb.co/bB4g0p9/2.png'
       },
       {
         title: 'AI-generated lessons',
         description: 'Each lesson consists of engaging writing to explain the topic clearly and memorably. Learn while walking, waiting, or relaxing.',
-        imageUrl: './3.png'
+        imageUrl: 'https://i.ibb.co/FbfV9v7/3.png'
       },
       {
         title: 'Quiz',
         description: 'Take a quiz after each lesson to make sure you understand the entire topic and are becoming smarter every day. Fuel your deep understanding and expand your knowledge.',
-        imageUrl: './4.png'
+        imageUrl: 'https://i.ibb.co/GcJ3rVp/4.png'
       }
     ];
 
@@ -368,11 +368,13 @@
 
                     <AnimateOnScroll>
                         <p className="text-lg text-gray-400 mb-8">Get Vincify now on the App Store</p>
-                        <div className="flex flex-col items-center md:items-start gap-4">
-                          <StoreButton icon={<AppleIcon />} storeName="App Store" />
-                          <div className="flex items-center gap-3 text-base text-gray-500 pl-1">
-                             <img src="https://img.icons8.com/ios/150/ffffff/google-play.png" alt="Google Play" className="w-6 h-6 opacity-50" />
-                             <span>Coming soon on Google Play</span>
+                        <div className="flex flex-col items-center md:items-start">
+                          <div className="flex flex-col items-center gap-4 w-full sm:w-80">
+                              <StoreButton icon={<AppleIcon />} storeName="App Store" />
+                              <div className="flex items-center justify-center gap-3 text-base text-gray-500">
+                                 <img src="https://img.icons8.com/ios/150/ffffff/google-play.png" alt="Google Play" className="w-6 h-6 opacity-50" />
+                                 <span>Coming soon on Google Play</span>
+                              </div>
                           </div>
                         </div>
                     </AnimateOnScroll>
@@ -406,7 +408,7 @@
                         <p className="text-lg text-gray-400 mb-8">Get Vincify now on the App Store</p>
                         <div className="flex flex-col items-center justify-center gap-4">
                             <StoreButton icon={<AppleIcon />} storeName="App Store" />
-                            <div className="flex items-center gap-3 text-base text-gray-500">
+                            <div className="flex items-center justify-center gap-3 text-base text-gray-500">
                                <img src="https://img.icons8.com/ios/150/ffffff/google-play.png" alt="Google Play" className="w-6 h-6 opacity-50" />
                                <span>Coming soon on Google Play</span>
                             </div>

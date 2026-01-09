@@ -14,13 +14,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;900&family=Cinzel:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Cinzel:wght@400;600;700;900&family=Exo+2:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Exo 2', sans-serif;
+      font-family: 'Merriweather', serif;
     }
     .font-cinzel {
       font-family: 'Cinzel', serif;
+    }
+    .font-exo {
+      font-family: 'Exo 2', sans-serif;
     }
     .reveal-on-scroll {
       opacity: 0;
@@ -73,7 +76,7 @@
     import ReactDOM from 'react-dom/client';
 
     const VincifyLogo = () => (
-      <h1 className="text-3xl font-semibold text-white tracking-tighter font-cinzel">
+      <h1 className="text-3xl font-bold text-white tracking-tighter font-cinzel">
         Vincify
       </h1>
     );
@@ -82,30 +85,38 @@
         <img 
             src="https://img.icons8.com/ios/150/ffffff/mac-os.png" 
             alt="Apple Logo" 
-            className="w-8 h-8 mr-2 object-contain"
+            className="w-8 h-8 object-contain"
+        />
+    );
+
+    const GooglePlayIcon = () => (
+        <img 
+            src="https://img.icons8.com/ios/150/ffffff/google-play.png" 
+            alt="Google Play Logo" 
+            className="w-8 h-8 object-contain"
         />
     );
 
     const FEATURES = [
       {
         title: 'To-Learn List',
-        description: 'Start each day by adding the topics you want to explore. The app turns your input into focused, AI-generated micro-lessons — fast, clear, and ready when you are. No distractions, just pure learning.',
-        imageUrl: './1.png'
+        description: 'Start each day by adding the topics you want to explore. The app turns your input into focused, AI-generated micro-lessons that are fast, clear, and ready when you are. No distractions, just pure learning.',
+        imageUrl: 'https://i.ibb.co/6gSXD3s/1.png'
       },
       {
         title: 'Add lessons',
         description: "Found something you're curious about? Just type it in. Our AI instantly turns your idea into a structured micro-lesson and adds it to your home list.",
-        imageUrl: './2.png'
+        imageUrl: 'https://i.ibb.co/bB4g0p9/2.png'
       },
       {
         title: 'AI-generated lessons',
         description: 'Each lesson consists of engaging writing to explain the topic clearly and memorably. Learn while walking, waiting, or relaxing.',
-        imageUrl: './3.png'
+        imageUrl: 'https://i.ibb.co/FbfV9v7/3.png'
       },
       {
         title: 'Quiz',
         description: 'Take a quiz after each lesson to make sure you understand the entire topic and are becoming smarter every day. Fuel your deep understanding and expand your knowledge.',
-        imageUrl: './4.png'
+        imageUrl: 'https://i.ibb.co/GcJ3rVp/4.png'
       }
     ];
 
@@ -164,10 +175,10 @@
             </div>
             <div className={`md:w-1/2 text-center md:text-left ${isReversed ? 'md:order-1' : ''}`}>
               <AnimateOnScroll>
-                <span className="inline-block px-4 py-1 text-sm font-semibold tracking-wider text-purple-300 bg-purple-900/30 rounded-full mb-4">
+                <span className="inline-block px-5 py-1.5 text-lg font-bold tracking-wider text-purple-300 bg-purple-900/30 rounded-full mb-4">
                   {feature.title}
                 </span>
-                <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                <p className="text-base md:text-lg text-gray-300 leading-relaxed">
                   {feature.description}
                 </p>
               </AnimateOnScroll>
@@ -232,11 +243,11 @@
 
         <AnimateOnScroll className="grid md:grid-cols-2 gap-4 md:gap-8 max-w-5xl mx-auto">
             <div className="bg-white/5 border border-white/10 p-4 md:p-8 rounded-2xl flex items-center gap-4 md:gap-6 transition-all duration-300 hover:scale-105 hover:bg-white/10">
-                <div className="text-3xl md:text-5xl flex-shrink-0">🎯</div>
+                <div className="text-3xl md:text-5_xl flex-shrink-0">🎯</div>
                 <p className="text-gray-200 text-base md:text-lg">You choose your own interests to learn with intention.</p>
             </div>
             <div className="bg-white/5 border border-white/10 p-4 md:p-8 rounded-2xl flex items-center gap-4 md:gap-6 transition-all duration-300 hover:scale-105 hover:bg-white/10">
-                <div className="text-3xl md:text-5xl flex-shrink-0">⏱️</div>
+                <div className="text-3xl md:text-5_xl flex-shrink-0">⏱️</div>
                 <p className="text-gray-200 text-base md:text-lg">Just 5 focused minutes a day to become the smartest version of yourself.</p>
             </div>
         </AnimateOnScroll>
@@ -246,13 +257,15 @@
 
     const StoreButton = ({ icon, storeName, subtitle = "GET IT ON", href }) => {
       const content = (
-        <>
-            {icon}
-            <div>
-              <span className="text-xs block text-gray-400">{subtitle}</span>
-              <span className="text-lg">{storeName}</span>
+        <div className="flex items-center text-left font-exo">
+            <div className="mr-3 flex-shrink-0">
+                {icon}
             </div>
-        </>
+            <div className="flex flex-col">
+              <span className="text-[10px] block text-gray-400 uppercase font-bold leading-none mb-1">{subtitle}</span>
+              <span className="text-xl font-bold leading-none">{storeName}</span>
+            </div>
+        </div>
       );
 
       const baseClasses = "flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 w-full sm:w-80 transform hover:scale-105 select-none";
@@ -277,10 +290,9 @@
         { question: "How does it work?", answer: "Inside the app, you create your own daily to-learn lists, just like Da Vinci did. Add topics you're curious about, and Vincify will automatically generate bite-sized lessons using AI. Each day, the app teaches you what you’ve chosen, in a clear and focused way. No distractions, no wasted time." },
         { question: "Who is Vincify for?", answer: "Vincify is made for lifelong learners, busy professionals, creatives, students, and anyone who wants to grow their knowledge daily without spending hours reading articles or watching long videos." },
         { question: "Is Vincify free to use?", answer: "Yes, Vincify is free to install and use. For unlimited use, there is also a premium version available." },
-        { question: "What kind of lessons can I expect?", answer: "The lessons are personalized and generated by AI based on the topics you choose. Expect concise, thought-provoking content in fields like science, philosophy, psychology, history, and technology. They're designed to be practical, engaging, and evolve with your curiosity." },
-        { question: "Can I use it on both iOS and Android?", answer: "Currently Vincify is only available on the App Store. The Android version is coming soon." },
-        { question: "How is this different from reading blogs or watching YouTube videos?", answer: "Instead of passively consuming random content, Vincify gives you focused lessons built around your goals, in a clean, distraction-free interface." },
-        { question: "How is the AI trained?", answer: "Vincify uses state-of-the-art AI models to summarize, generate, and simplify complex topics into daily lessons. It’s designed not just to inform, but to teach in a human-centered, motivating way." }
+        { question: "What kind of lessons can I expect?", answer: "The lessons are personalized and generated by AI based on the topics you choose. Every lesson consists of 3 pages, followed up with a quiz and personalized recommendations. They're designed to be practical, engaging, and evolve with your curiosity." },
+        { question: "Can I use it on both iOS and Android?", answer: "Yes! Vincify is available on both the Apple App Store and Google Play Store." },
+        { question: "How is this different from reading blogs or watching YouTube videos?", answer: "Instead of passively consuming random content, Vincify gives you focused lessons built around the topics YOU choose, in a clean, distraction-free interface. Vincify utilizes a microlearning approach, breaking down complex information into high-impact, short bursts that fit perfectly into your daily routine and improve long-term retention." }
     ];
 
     const FaqItem = ({ faq, isOpen, onClick }) => (
@@ -367,10 +379,10 @@
                 <div className="relative z-10 container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
                   <div className="md:w-1/2 text-center md:text-left mb-0 md:mb-0">
                     <AnimateOnScroll>
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter mb-4 text-gray-300 font-cinzel">
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4 text-gray-300 font-cinzel">
                           Vincify
                         </h1>
-                        <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-8 md:mb-8">
+                        <p className="text-base md:text-lg text-gray-300 leading-relaxed mb-8 md:mb-8">
                           The revolutionary AI-driven app that will turn you into a polymath.
                         </p>
                     </AnimateOnScroll>
@@ -385,14 +397,11 @@
                     </AnimateOnScroll>
 
                     <AnimateOnScroll>
-                        <p className="text-lg text-gray-400 mb-8">Get Vincify now on the App Store</p>
+                        <p className="text-lg text-gray-400 mb-8">Get Vincify now on your store</p>
                         <div className="flex flex-col items-center md:items-start">
                           <div className="flex flex-col items-center gap-4 w-full sm:w-80">
                               <StoreButton icon={<AppleIcon />} storeName="App Store" href="https://apps.apple.com/us/app/vincify/id6753122332" />
-                              <div className="flex items-center justify-center gap-3 text-base text-gray-500">
-                                 <img src="https://img.icons8.com/ios/150/ffffff/google-play.png" alt="Google Play" className="w-6 h-6 opacity-50" />
-                                 <span>Coming soon on Google Play</span>
-                              </div>
+                              <StoreButton icon={<GooglePlayIcon />} storeName="Google Play" href="https://play.google.com/store/apps/details?id=com.vincifyflutterflow.app" />
                           </div>
                         </div>
                     </AnimateOnScroll>
@@ -423,12 +432,11 @@
               <section className="py-20 text-center">
                 <div className="container mx-auto px-6">
                     <AnimateOnScroll>
-                        <p className="text-lg text-gray-400 mb-8">Get Vincify now on the App Store</p>
-                        <div className="flex flex-col items-center justify-center gap-4">
-                            <StoreButton icon={<AppleIcon />} storeName="App Store" href="https://apps.apple.com/us/app/vincify/id6753122332" />
-                            <div className="flex items-center justify-center gap-3 text-base text-gray-500">
-                               <img src="https://img.icons8.com/ios/150/ffffff/google-play.png" alt="Google Play" className="w-6 h-6 opacity-50" />
-                               <span>Coming soon on Google Play</span>
+                        <p className="text-lg text-gray-400 mb-8">Get Vincify now on your store</p>
+                        <div className="flex flex-col items-center justify-center">
+                            <div className="flex flex-col items-center gap-4 w-full sm:w-80">
+                                <StoreButton icon={<AppleIcon />} storeName="App Store" href="https://apps.apple.com/us/app/vincify/id6753122332" />
+                                <StoreButton icon={<GooglePlayIcon />} storeName="Google Play" href="https://play.google.com/store/apps/details?id=com.vincifyflutterflow.app" />
                             </div>
                         </div>
                     </AnimateOnScroll>
